@@ -13,6 +13,7 @@ rCharts - Bar Plot
   }
 </style>
  
+ 
 ```{r results = 'asis', echo=F}
 require(rCharts)
 hair_eye_male <- subset(as.data.frame(HairEyeColor), Sex == "Male")
