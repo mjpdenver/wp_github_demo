@@ -1,0 +1,91 @@
+<style>
+.footer {
+    color: black;
+    background: #E8E8E8;
+    position: fixed;
+    top: 90%;
+    text-align:center;
+    width:100%;
+}
+</style>
+
+
+github_demo
+========================================================
+author: Matt Pocernich
+date: April 16, 2015
+width: 1440
+height: 900
+font-family: 'Risque'
+
+
+Background
+========================================================
+
+For this talk, I will assume you have a bit of knowledge with the following.
+
+- git and github
+- RStudio
+- R Markdown
+- Interactive plots
+
+Outline
+========================================================
+
+1. Making presentations and webpages using R Markdown
+2. Committing to github
+3. Branching master repo named gh-pages 
+4. Adding .nojekll file.
+5. Making a webpage
+6. Rpub option
+
+Using RStudio to provide a presentation or document template
+=========================================================
+
+
+
+googleVis - Motion Chart
+========================================================
+```{r results = 'asis', echo=F}
+require(googleVis)
+M <- gvisMotionChart(Fruits, "Fruit", "Year", options=list(width=800, height=410))
+print(M, tag='chart')
+```
+
+
+Slide With Code
+========================================================
+
+```{r}
+summary(cars)
+```
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE, }
+plot(cars)
+```
+
+
+Leaflet Plot
+========================================
+
+
+```{r leaflet, results='asis' } 
+location <- read.csv("MonitoringLocationsExport (1).csv")
+#devtools::install_github("rstudio/leaflet")
+
+library(leaflet)
+
+m = leaflet() %>% addTiles()
+plot(m %>% addCircles(data=location) %>% addMarkers(data=location, popup=location$Name ) )
+
+```
+
+Unresolved Questions
+===================================
+
+* Changing Presentation Style
+* Changing Font Sizes
+

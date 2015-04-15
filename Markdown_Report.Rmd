@@ -1,0 +1,107 @@
+---
+title: "Making quick, interactive webpages with Rstudio"
+author: "Matt Pocernich"
+date: April 16, 2015
+#output: ioslides_presentation
+output:
+  html_document:
+    toc: true
+    theme: cosmo
+    highlight: espresso
+    fig_width: 7
+    fig_height: 6
+
+---
+
+## Background
+
+For this talk, I will assume you have a bit of knowledge with the following.
+
+- git and github
+- RStudio
+- R Markdown
+- Interactive plots
+
+
+## Using RStudio to provide a presentation or document template
+
+* Templates now available for different purposes
+* Provide a good starting point
+* R Markdown is evolving and RStudio is now created a product called R Markdown V2
+
+
+## googleVis - Motion Chart
+
+```{r results = 'asis', echo=FALSE, warning=FALSE, message=FALSE, tidy = TRUE}
+
+require(googleVis)
+op <- options(gvis.plot.tag='chart')
+M <- gvisMotionChart(Fruits, "Fruit", "Year", options=list(width=800, height=410))
+plot(M)
+
+```
+
+
+## Leaflet
+
+```{r results = 'asis', echo=FALSE, tidy=TRUE, warning=FALSE, message=FALSE}
+
+library(leaflet)
+location <- read.csv("MonitoringLocationsExport (1).csv")
+#devtools::install_github("rstudio/leaflet")
+
+library(leaflet)
+
+m <-  leaflet() %>% addTiles()
+ 
+m %>% setView(-107.03, 39.32, zoom = 10)%>% 
+     addCircles(data=location) %>% 
+      addMarkers(data=location, popup=location$Name )
+
+
+```
+
+
+## Datatable
+
+```{r}
+library(DT)
+datatable(iris, filter = 'top',rownames = FALSE)
+
+```
+
+## Publish to web using Rpubs
+* Rpubs is a service provided by Rstudio to share documents created using R Markdown.
+* Code is not shared
+* By design, everything is public
+* Very easy using menu option in RStudio.
+
+## Creating a web page using github.
+
+1.  Locally, create Rmd or Rpres document
+2.  Save as html document
+3.  Commit locally and push to project directory ( assuming one has already been created.)
+4.  Branch called 'gh-pages' of master directory in github 
+5.  Add .nojekll file
+6.  Web page is create.
+
+## Command line steps (Goto Git tab > More > Shell)
+
+1. git branch gh-pages
+2. git checkout gh-pages
+3. git push origin gh-pages
+4. touch .nojekll
+5. git add .nojekll
+6. git commit -a -m "Initial commit"
+7. git push origin gh-pages
+
+## Gaining better control
+
+* Changing Presentation Style
+* Changing Font Sizes
+
+## Random Findings
+
+* Some images such as googleVis plots won't render unless saved and viewed in an html document.
+* Update to the most recent version of RStudio.  I encountered an error in using Rpubs that required I updatem to RStudio.
+
