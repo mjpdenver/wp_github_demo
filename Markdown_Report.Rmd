@@ -65,8 +65,8 @@ m %>% setView(-107.03, 39.32, zoom = 10)%>%
 ## Datatable
 
 ```{r}
-library(DT)
-datatable(iris, filter = 'top',rownames = FALSE)
+#library(DT)
+#datatable(iris, filter = 'top',rownames = FALSE)
 
 ```
 
